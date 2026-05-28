@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Vertical Slider</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at top, #222 0%, #000 60%);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .slider {
+      position: relative;
+      width: 360px;
+      height: 640px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition:
+        opacity 1s ease,
+        transform 4s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+      transform: scale(1);
+    }
+
+    .slide a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top,
+        rgba(0,0,0,0.5),
+        transparent 35%,
+        transparent 65%,
+        rgba(0,0,0,0.25));
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .progress {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .bar {
+      width: 34px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.25);
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: #fff;
+      border-radius: inherit;
+      transition: width 3s linear;
+    }
+
+    .bar.active span {
+      width: 100%;
+    }
+
+    @media (max-width: 420px) {
+      .slider {
+        width: 92vw;
+        height: 163vw;
+        max-height: 95vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider">
+
+    <div class="slide active">
+      <a href="https://t.me/genzcosplayxxx" target="_blank">
+        <img src="https://asianpink.net/wp-content/uploads/2026/05/tele1.webp" alt="1">
+      </a>
+    </div>
+
+    <div class="slide">
+      <a href="https://t.me/cosplayX18" target="_blank">
+        <img src="https://asianpink.net/wp-content/uploads/2026/05/tele2.webp" alt="2">
+      </a>
+    </div>
+
+    <div class="slide">
+      <a href="https://t.me/genzcosplayxxx" target="_blank">
+        <img src="https://asianpink.net/wp-content/uploads/2026/05/tele3.webp" alt="3">
+      </a>
+    </div>
+
+    <div class="slide">
+      <a href="https://t.me/cosplayX18" target="_blank">
+        <img src="https://asianpink.net/wp-content/uploads/2026/05/tele4.webp" alt="4">
+      </a>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="progress">
+      <div class="bar active"><span></span></div>
+      <div class="bar"><span></span></div>
+      <div class="bar"><span></span></div>
+      <div class="bar"><span></span></div>
+    </div>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const bars = document.querySelectorAll('.bar');
+
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+
+      bars.forEach((bar, i) => {
+        bar.classList.remove('active');
+
+        if (i === index) {
+          void bar.offsetWidth;
+          bar.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    showSlide(current);
+    setInterval(nextSlide, 3000);
+  </script>
+
+</body>
+</html>
